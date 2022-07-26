@@ -1,0 +1,59 @@
+.buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 1px 15px 14px 14px;
+  align-items: center;
+  justify-content: center;
+  button {
+    background: #c2c6ca;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    outline: none;
+
+    width: 74px;
+    height: 22px;
+    display: grid;
+    &:not(:last-child){
+      margin-right: 7px;
+    }
+    p {
+      font-size: 12px;
+      margin: auto;
+    }
+    img {
+      margin: 4px 3px 3px 4px;
+      display: none;
+    }
+    p, img {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    &:focus {
+      outline: none;
+      box-shadow: 0.5px 0.5px 0 0.5px black, inset 1px 1px black,  inset -1px -1px black, inset 2px 2px white, inset -2px -2px #85898d;
+      img {
+        display: block;
+      }
+    }
+    &:active {
+      box-shadow: 0.5px 0.5px 0 0.5px black, inset 1px 1px black,
+        inset -1px -1px #85898d, inset 2px 2px #85898d;
+      outline: none;
+      p, img {
+        transform: translateX(1px) translateY(1px);
+      }
+    }
+  }
+}
+.shadow {
+  box-shadow: 0.5px 0.5px 0 0.5px black, inset 1px 1px white,
+    inset -1px -1px #85898d;
+}
+
+section p {
+  color: black;
+  font-size: 12px;
+  margin-left: 8px;
+  margin-right: 8px;
+}

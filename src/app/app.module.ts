@@ -1,9 +1,10 @@
+import { DialogModule } from '@angular/cdk/dialog';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SceneComponent } from './scene/scene.component';
+import { DialogModuleCustom } from './dialog/dialog.module';
 import { SceneModule } from './scene/scene.module';
 
 @NgModule({
@@ -13,9 +14,11 @@ import { SceneModule } from './scene/scene.module';
   imports: [
     BrowserModule,
     SceneModule,
+    DialogModule,
+    DialogModuleCustom,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [SceneComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

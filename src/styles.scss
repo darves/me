@@ -1,1 +1,261 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@font-face {
+  font-family: myfont;
+  src: url("./assets/w95fa.woff") format('woff');
+}
+body {
+    background: black;
+    color: white;
+    font-family: "Microsoft Sans Serif", sans-serif;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+ruby {
+    -webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+}
+rb {
+    font-size: 72pt;
+    font-family: myfont;
+}
+#bio {
+    max-width: 250pt;
+    margin: 0 auto;
+}
+ul {
+    padding: 0;
+}
+li {
+    list-style-type: none;
+    display: inline;
+}
+li:not(:last-child)::after {
+    content: ' ⭐️ ';
+    font-size: 66%;
+}
+a {
+    color: white;
+}
+a:visited {
+    color: silver;
+}
+#witch-space {
+    height: 120px;
+}
+footer {
+    margin-top: 1.33em;
+}
+
+// DIALOG
+button {
+	color: black;
+	font-size: 8pt;
+	font-family: "Microsoft Sans Serif", sans-serif;
+	position: relative;
+	margin: 0;
+	padding: 4px;
+	padding-left: 2px;
+	padding-top: 2px;
+	background-color: silver;
+	text-align: center;
+	user-select: none;
+	border: 0;
+	border-top: 1px solid white;
+	border-left: 1px solid white;
+	box-shadow: inset -1px -1px gray, 1px 1px black, 1px 0 black, 0 1px black, 1px 1px black;
+	transform: translate(1px, 1px);
+	cursor: inherit;
+	&:not([disabled]) {
+		&:active {
+			border: 0;
+			border-right: 1px solid white;
+			border-bottom: 1px solid white;
+			box-shadow: inset 1px 1px gray, -1px -1px black, -1px 0 black, 0 -1px black;
+			padding-left: 3px;
+			padding-top: 3px;
+			transform: translate(2px, 2px);
+		}
+	}
+	&:not([tabindex]) {
+		outline: none;
+	}
+}
+
+.titlebar {
+  color: black;
+  font-size: 8pt;
+  font-family: "Microsoft Sans Serif", sans-serif;
+  font-weight: bold;
+  color: white;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 3px;
+  padding-right: 2px;
+  margin-bottom: 1px;
+  overflow: hidden;
+  height: 18px;
+  user-select: none;
+  text-align: left;
+}
+
+.window {
+  cursor: url(cursor.png) 1 0, default!important;
+  position: absolute;
+  background-color: silver;
+  border-top: 1px solid silver;
+  border-left: 1px solid silver;
+  box-shadow: inset -1px -1px gray, inset 1px 1px white, 1px 1px black, 0 1px black, 1px 0 black;
+  padding: 3px;
+  padding-bottom: 1px;
+  overflow: hidden;
+  >article {
+    overflow: auto;
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+    box-shadow: inset -1px -1px silver, inset 1px 1px black, 1px 1px white, 1px 0 white, 0 1px white;
+    margin-right: 1px;
+    margin-bottom: 3px;
+  }
+  >iframe {
+    border: 0;
+  }
+}
+
+.titlebutton {
+  float: right;
+  width: 15px;
+  height: 13px;
+  max-height: 13px;
+  padding: 0 !important;
+  padding-left: -2px !important;
+  padding-right: -2px !important;
+  margin: 0;
+  margin-left: 3px;
+  font-weight: bold;
+  overflow: none;
+  user-select: none;
+  transform: none;
+  &:not([disabled]) {
+    &:active {
+      padding: 0 !important;
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+      transform: translate(1px, 1px) !important;
+    }
+  }
+}
+.close {
+  font-size: 13pt;
+  font-weight: normal;
+  line-height: 50%;
+}
+.moving-window {
+  >article {
+    pointer-events: none;
+  }
+  >iframe {
+    pointer-events: none;
+  }
+}
+
+.active-window {
+  >.titlebar {
+    background-color: navy;
+  }
+}
+
+.inactive-window {
+  >.titlebar {
+    background-color: gray;
+  }
+}
+
+.win95 {
+  &
+  &article {
+    color: black;
+    font-size: 8pt;
+    font-family: "Microsoft Sans Serif", sans-serif;
+    cursor: url(select.png) 3 6, text;
+    background-color: lightyellow;
+    color: black;
+    padding: 1px;
+    padding-left: 13px;
+    padding-right: 13px;
+    padding-bottom: 8px;
+    line-height: 1.4;
+  }
+  &h1 {
+    color: black;
+    font-size: 8pt;
+    font-family: "Microsoft Sans Serif", sans-serif;
+    font-weight: bold;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 4px;
+  }
+  &ul {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    list-style-type: square;
+    padding-left: 16px;
+  }
+  &p {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 4px;
+  }
+  &li {
+    margin-bottom: 3px;
+  }
+  &button.down {
+    border: 0;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    box-shadow: inset 1px 1px gray, -1px -1px black, -1px 0 black, 0 -1px black;
+    padding-left: 3px;
+    padding-top: 3px;
+    transform: translate(2px, 2px);
+  }
+  &button[tabindex] {
+    &:focus {
+      outline: dotted black 1px;
+      outline-offset: -4px;
+    }
+  }
+  &button[disabled] {
+    color: gray;
+  }
+  &#desktop {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: teal;
+    overflow: hidden;
+    cursor: url(cursor.png) 1 0, default;
+  }
+  &a {
+    &:hover {
+      cursor: url(pointer.png) 6 0, pointer;
+    }
+  }
+  .cursor-working {
+    // cursor: url(working.png) 1 0, progress !important;
+  }
+
+  &label {
+    cursor: inherit;
+  }
+}
+
+

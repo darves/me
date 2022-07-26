@@ -10,7 +10,7 @@ import { interval } from 'rxjs';
 import { WebGLService } from './web-gl.service';
 
 @Component({
-  selector: 'tc-scene',
+  selector: 'app-scene',
   templateUrl: './scene.component.html',
   styleUrls: ['./scene.component.scss'],
 })
@@ -23,9 +23,9 @@ export class SceneComponent implements OnInit, AfterViewInit {
   private _60fpsInterval = 16.666666666666666667;
   private gl!: WebGLRenderingContext
 
-  constructor(private webglService: WebGLService) {}
+  constructor(private webglService: WebGLService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngAfterViewInit(): void {
     if (!this.canvas) {
@@ -35,14 +35,18 @@ export class SceneComponent implements OnInit, AfterViewInit {
     this.gl = this.webglService.initialiseWebGLContext(
       this.canvas.nativeElement
     ) as WebGLRenderingContext;
+    this.webglService.onResize();
+
     // Set up to draw the scene periodically.
     // const drawSceneInterval = interval(this._60fpsInterval);
     // drawSceneInterval.subscribe(() => {
     //   this.drawScene();
     // });
-    requestAnimationFrame(() => {
-      this.webglService.render();
-    });
+    // requestAnimationFrame(() => {
+    //   this.webglService.render();
+    // });
+
+    this.webglService.render();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -50,22 +54,10 @@ export class SceneComponent implements OnInit, AfterViewInit {
     this.webglService.onResize();
   }
 
-  /**
-   * Draws the scene
-   */
-  private drawScene() {
-    // prepare the scene and update the viewport
-    // this.webglService.updateViewport();
-    // this.webglService.prepareScene();
-
-    // draw the scene
-    const offset = 0;
-    const vertexCount = 4;
-    this.gl.drawArrays(
-      this.gl.TRIANGLE_STRIP,
-      offset,
-      vertexCount
-    );
+  @HostListener('window:mousemove', ['$event'])
+  onMouseMove(event: any) {
+    let x = event.pageX;
+    let y = event.pageY;
+    this.webglService.setMousePosition(x, y);
   }
-
 }
