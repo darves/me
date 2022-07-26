@@ -7,7 +7,7 @@ attribute float starProximity;
 void main()
 {
     float effectiveTime = time * starSpeed * 2.0 * starProximity;
-    vec2 calculatedCenter = vec2(mod(1.0 + (starCenter.x + effectiveTime + starLeftRight), 2.0) - 1.0, mod(1.0 + (starCenter.y + (starTopBottom)), 2.0) - 1.0);
+    vec2 calculatedCenter = vec2(mod(1.0 + (starCenter.x + effectiveTime + starLeftRight), 2.0) - 1.0, mod(1.0 + (starCenter.y + (starTopBottom / 5.0)), 2.0) - 1.0);
     gl_PointSize = max(4.0 * starProximity, 0.75);
     gl_Position = vec4(calculatedCenter, 1.0 - starProximity, 1.0);
 }

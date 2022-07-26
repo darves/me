@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { DialogRef } from '../dialog-ref';
-import { DIALOG_DATA } from '../dialog-token';
+import { WinDialogRef } from '../dialog-ref';
+
+import { WIN_DIALOG_DATA } from '../win-dialog-token';
 
 @Component({
   selector: 'app-yes-no',
@@ -9,8 +10,8 @@ import { DIALOG_DATA } from '../dialog-token';
 })
 export class YesNoComponent implements OnInit {
 
-  constructor(private dialogRef: DialogRef,
-    @Inject(DIALOG_DATA) public data: DialogData,
+  constructor(private dialogRef: WinDialogRef,
+    @Inject(WIN_DIALOG_DATA) public data: DialogData,
     ) { }
 
   ngOnInit(): void {

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { YesNoComponent } from './yes-no/yes-no.component';
 import { WinDialogComponent } from './win-dialog/win-dialog.component';
 import { DialogHostDirective } from './dialog-host.directive';
+import { CmdfmComponent } from './cmdfm/cmdfm.component';
+import { DialogModule } from '@angular/cdk/dialog';
 
 
 
@@ -10,10 +12,12 @@ import { DialogHostDirective } from './dialog-host.directive';
   declarations: [
     YesNoComponent,
     WinDialogComponent,
-    DialogHostDirective
+    DialogHostDirective,
+    CmdfmComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    DialogModule
   ]
 })
-export class DialogModuleCustom { }
+export class WinDialogModuleCustom { }

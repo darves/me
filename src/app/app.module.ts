@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DialogModuleCustom } from './dialog/dialog.module';
+import { WinDialogModuleCustom } from './dialog/win-dialog.module';
 import { SceneModule } from './scene/scene.module';
 
 @NgModule({
@@ -15,7 +15,7 @@ import { SceneModule } from './scene/scene.module';
     BrowserModule,
     SceneModule,
     DialogModule,
-    DialogModuleCustom,
+    WinDialogModuleCustom,
     AppRoutingModule
   ],
   providers: [],

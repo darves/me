@@ -5,7 +5,7 @@ import { Subject, Observable } from 'rxjs';
  * A reference to the dialog itself.
  * Can be injected into the component added to the overlay and then used to close itself.
  */
-export class DialogRef {
+export class WinDialogRef {
   private afterClosedSubject = new Subject<any>();
 
   constructor(private overlayRef: OverlayRef) {

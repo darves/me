@@ -113,7 +113,6 @@ export class WebGLService {
   }
 
   render() {
-    console.log('render');
     this.gl.clear(this.gl.COLOR_BUFFER_BIT);
     this.gl.useProgram(this.starShaderProgram);
     this.bindAndEnableStars();
@@ -154,9 +153,7 @@ export class WebGLService {
         // how far are the stars (3rd dimension);
         this.starVertexData.push(proximity);
       }
-
     } else if (currentStarCount > starCount) {
-      console.log('Removing');
       this.starVertexData.splice(starCount * this.FLOATS_PER_STAR);
     }
 

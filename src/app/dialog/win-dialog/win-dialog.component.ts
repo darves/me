@@ -1,14 +1,14 @@
-import { Component, ElementRef, Inject, Injector, OnInit, Type, ViewChild, ViewChildren, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Inject, Injector, OnInit, Type, ViewChild, ViewChildren, ViewContainerRef } from '@angular/core';
 import { DIALOG_COMPONENT } from '../dialog-component-token';
 import { DialogHostDirective } from '../dialog-host.directive';
-import { DialogRef } from '../dialog-ref';
-import { DIALOG_DATA } from '../dialog-token';
+import { WinDialogRef } from '../dialog-ref';
+
+import { WIN_DIALOG_DATA } from '../win-dialog-token';
 
 @Component({
   selector: 'app-win-dialog',
   templateUrl: './win-dialog.component.html',
   styleUrls: ['./win-dialog.component.scss'],
-
 })
 export class WinDialogComponent implements OnInit {
   @ViewChild('container') container!: ElementRef;
@@ -16,14 +16,16 @@ export class WinDialogComponent implements OnInit {
   @ViewChild(DialogHostDirective)
   dialogHostDirective!: DialogHostDirective;
 
-  constructor(private dialogRef: DialogRef,
+  constructor(private dialogRef: WinDialogRef,
     private injector: Injector,
-    @Inject(DIALOG_DATA) public data: any,
+    private cd: ChangeDetectorRef,
+    @Inject(WIN_DIALOG_DATA) public data: any,
     @Inject(DIALOG_COMPONENT) private component: Type<Component>) {
+      console.log(data);
   }
 
   ngOnInit(): void {
-    this.dialogRef.updateSize({ width: '283px', height: '283px' })
+    // this.dialogRef.updateSize({ width: '640px', height: '480px' })
   }
 
   onClose() {
@@ -31,22 +33,26 @@ export class WinDialogComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.x = Number.parseInt(this.container.nativeElement.style.left);
-    this.y = Number.parseInt(this.container.nativeElement.style.top);
+    this.x = 0 //Number.parseInt(this.container.nativeElement.style.left);
+    this.y = 0 // Number.parseInt(this.container.nativeElement.style.top);
 
     const injector = Injector.create({
       parent: this.injector,
       providers: [
-        { provide: DialogRef, useValue: this.dialogRef },
-        { provide: DIALOG_DATA, useValue: this.data },
+        { provide: WinDialogRef, useValue: this.dialogRef },
+        { provide: WIN_DIALOG_DATA, useValue: this.data },
       ],
     });
 
     const viewContainerRef = this.dialogHostDirective.viewContainerRef;
+
     viewContainerRef.clear();
-    viewContainerRef.createComponent<Component>(this.component, {
+    viewContainerRef.createComponent<any>(this.component, {
       injector: injector
     });
+
+    // we need a dialogHostDirective, to avoid a NG0100 we need manualy to trigger detectChanges;
+    this.cd.detectChanges();
   }
 
   private x!: number;
@@ -55,8 +61,8 @@ export class WinDialogComponent implements OnInit {
   onMouseDown(event: any) {
     let that = this;
 
-    var clientOffsetX = this.x - event.clientX;
-    var clientOffsetY = this.y - event.clientY;
+    let clientOffsetX = this.x - event.clientX;
+    let clientOffsetY = this.y - event.clientY;
     this.setInactive();
     let mousemoveHandler = function (event: any) {
       that.setPosition(Math.floor(event.clientX + clientOffsetX), Math.floor(event.clientY + clientOffsetY));

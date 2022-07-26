@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { DialogService } from './dialog/dialog.service';
+import { CmdfmComponent } from './dialog/cmdfm/cmdfm.component';
+import { WinDialogService } from './dialog/win-dialog.service';
 import { YesNoComponent } from './dialog/yes-no/yes-no.component';
 
 @Component({
@@ -13,12 +14,13 @@ export class AppComponent {
 
   yearsOfExpirience = new Date().getFullYear() - this.startedWithFrontend;
 
-  constructor(public dialog: DialogService) {
+  constructor(public dialog: WinDialogService) {
   }
 
   onClick() {
-    this.dialog.open(YesNoComponent, {data: {
-      message: 'Are you sure you want to leave this (awesome) website?'
+    this.dialog.open(CmdfmComponent, {data: {
+      message: 'Are you sure you want to leave this (awesome) website?',
+      title: 'Mario.exe'
     }})
   }
 }

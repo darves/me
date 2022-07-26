@@ -1,4 +1,4 @@
-<div #container class="window active-window" style="z-index: 2; left: 110px; top: 240px;">
+<div #container class="window active-window" style="z-index: 2;">
   <div class="titlebar" (click)="setActive($event)" (mousedown)="onMouseDown($event)">{{data.title || 'Please confirm'}}
     <button (click)="onClose()" class="titlebutton close" tabindex="-1">×</button>
   </div>

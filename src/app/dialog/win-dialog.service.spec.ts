@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DialogService } from './dialog.service';
+import { WinDialogService } from './win-dialog.service';
 
 describe('DialogService', () => {
-  let service: DialogService;
+  let service: WinDialogService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DialogService);
+    service = TestBed.inject(WinDialogService);
   });
 
   it('should be created', () => {
