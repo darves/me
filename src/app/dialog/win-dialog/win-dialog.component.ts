@@ -16,6 +16,10 @@ export class WinDialogComponent implements OnInit {
   @ViewChild(DialogHostDirective)
   dialogHostDirective!: DialogHostDirective;
 
+  // position, we need it for window move;
+  private x!: number;
+  private y!: number;
+
   constructor(private dialogRef: WinDialogRef,
     private injector: Injector,
     private cd: ChangeDetectorRef,
@@ -33,8 +37,10 @@ export class WinDialogComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.x = 0 //Number.parseInt(this.container.nativeElement.style.left);
-    this.y = 0 // Number.parseInt(this.container.nativeElement.style.top);
+    setTimeout(() => {
+      this.x = Number.parseInt(this.container.nativeElement.offsetLeft);
+      this.y = Number.parseInt(this.container.nativeElement.offsetTop);
+    });
 
     const injector = Injector.create({
       parent: this.injector,
@@ -55,15 +61,11 @@ export class WinDialogComponent implements OnInit {
     this.cd.detectChanges();
   }
 
-  private x!: number;
-  private y!: number;
-
   onMouseDown(event: any) {
     let that = this;
 
     let clientOffsetX = this.x - event.clientX;
     let clientOffsetY = this.y - event.clientY;
-    this.setInactive();
     let mousemoveHandler = function (event: any) {
       that.setPosition(Math.floor(event.clientX + clientOffsetX), Math.floor(event.clientY + clientOffsetY));
       event.preventDefault();

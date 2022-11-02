@@ -2,6 +2,8 @@ import { Dialog } from '@angular/cdk/dialog';
 import { Overlay, ComponentType } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Injectable, Injector } from '@angular/core';
+import { TranslatableText } from '../core/translatable-text';
+import { ConfirmDialogBoxComponent } from './confirm-dialog-box/confirm-dialog-box.component';
 import { DIALOG_COMPONENT } from './dialog-component-token';
 import { WinDialogRef } from './dialog-ref';
 
@@ -18,6 +20,12 @@ export interface DialogConfig {
 export class WinDialogService {
   constructor(private overlay: Overlay, private injector: Injector, public dialog: Dialog) {}
 
+  confirm(config?: ConfirmDialogConfig) {
+    return this.open(ConfirmDialogBoxComponent, {
+      data: config
+    });
+  }
+
   /**
    * Open a custom component in an overlay
    */
@@ -27,7 +35,7 @@ export class WinDialogService {
     const positionStrategy = this.overlay
       .position()
       .global()
-      .centerHorizontally()
+      .centerHorizontally('-300px')
       .centerVertically();
 
     // Create the overlay with customizable options
@@ -36,8 +44,8 @@ export class WinDialogService {
       hasBackdrop: true,
       backdropClass: 'overlay-backdrop',
       panelClass: 'overlay-panel',
-      width: '100%',
-      height: '100%'
+      // width: '100%',
+      // height: '100%'
     });
 
     // Create dialogRef to return
@@ -59,4 +67,9 @@ export class WinDialogService {
 
     return dialogRef;
   }
+}
+
+interface ConfirmDialogConfig {
+  title?: string;
+  message?: string;
 }

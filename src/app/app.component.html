@@ -9,10 +9,10 @@
   <p id="bio">
     Experienced Frontend Engineer with a demonstrated history of working in the computer software industry; Skilled in frontend and backend development; last {{yearsOfExpirience}}+ years focused on the frontend.
   </p>
-  <button (click)="onClick()">Click</button>
+  <!-- <button (click)="onButtonClick()">Click</button> -->
   <ul>
-      <li><a href="https://www.linkedin.com/in/darkoveselinovic/">linkedin</a></li>
-      <li><a href="https://github.com/darves">github</a></li>
-      <li><a href="javascript: ;" (click)="onClick()">mario</a></li>
+      <li><a (click)="onLinkClick($event)" href="https://www.linkedin.com/in/darkoveselinovic/">linkedin</a></li>
+      <li><a (click)="onLinkClick($event)"href="https://github.com/darves">github</a></li>
+      <li><a href="javascript: ;" (click)="onMarioClick()">mario</a></li>
   </ul>
 </main>

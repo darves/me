@@ -4,11 +4,11 @@ import { WinDialogRef } from '../dialog-ref';
 import { WIN_DIALOG_DATA } from '../win-dialog-token';
 
 @Component({
-  selector: 'app-yes-no',
-  templateUrl: './yes-no.component.html',
-  styleUrls: ['./yes-no.component.scss']
+  selector: 'app-confirm-dialog-box',
+  templateUrl: './confirm-dialog-box.component.html',
+  styleUrls: ['./confirm-dialog-box.component.scss']
 })
-export class YesNoComponent implements OnInit {
+export class ConfirmDialogBoxComponent implements OnInit {
 
   constructor(private dialogRef: WinDialogRef,
     @Inject(WIN_DIALOG_DATA) public data: DialogData,
@@ -18,7 +18,7 @@ export class YesNoComponent implements OnInit {
   }
 
   onYesClick() {
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 
   onNoClick() {
